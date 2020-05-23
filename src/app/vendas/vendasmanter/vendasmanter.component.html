@@ -1,0 +1,93 @@
+<app-layout>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vendas - {{ operacao }}</h5>
+
+            <div class="row mt-2">
+                <div class="form-group col-lg-12">
+                    <label for="codigo" class="control-label">Código da Venda</label>
+                    <input class="form-control" type="text" [(ngModel)]="vendas.codigo" />
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="form-group col-lg-6">
+                    <label for="nome" class="control-label">Nome do Cliente:</label>
+                    <select [(ngModel)]="vendas.cliente" class="form-control">
+                        <option [ngValue]="null">Selecione</option>
+                        <option *ngFor="let cliente of listaCliente" [ngValue]="cliente">{{ cliente.nome }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="data" class="control-label">Data da Venda</label>
+                    <input class="form-control" type="date" [(ngModel)]="vendas.dataVenda" />
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Adicionar Vendas</h5>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="nome" class="control-label">Produto:</label>
+                            <select [(ngModel)]="vendasProdutos.produto" class="form-control">
+                                <option [ngValue]="null">Selecione</option>
+                                <option *ngFor="let produto of listaProduto" [ngValue]="produto">{{ produto.nome }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="quantidade" class="control-label">Quantidade:</label>
+                            <input type="text" class="form-control" name="quantidade" [(ngModel)]="vendasProdutos.quantidade" />
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-lg-12">
+                            <button *ngIf="this.operacao=='Incluir'" type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="adicionar()">Adicionar</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="table-responsive-sm col-lg-12">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Produto</th>
+                                        <th>Quantidade</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let vendasProdutos of vendas.listaVendasProduto">
+                                        <td>{{ vendasProdutos.produto.nome }}</td>
+                                        <td>{{ vendasProdutos.quantidade}}</td>
+                                        <td>
+                                            <a (click)="removercurso(vendasProdutos)">
+                                                <button type="button" class="btn">X</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="btn-group">
+                            <div class="col-lg-6">
+                                <button *ngIf="this.operacao=='Incluir'" type="button" class="btn btn-primary" style="margin-right: 10px;" (click)="incluir()">Incluir</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button type="button" class="btn btn-dark" style="margin-left: 10px;" (click)="voltar()">Voltar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</app-layout>
+

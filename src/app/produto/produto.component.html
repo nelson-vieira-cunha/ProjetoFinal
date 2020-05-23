@@ -1,0 +1,63 @@
+<app-layout>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Produto</h3>
+
+            <div class="row">
+                <div class="form-group col-12">
+                    <label class="control-label" for="nome">Nome:</label>
+                    <input class="form-control" name="nome" [(ngModel)]="produto.nome" />
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-primary" (click)="pesquisar()">Pesquisar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="table-responsive col-lg-12">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th>Valor</th>
+                                <th>Observação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let produto of listaProduto">
+                                <td>
+                                    <input type="radio" name="selecionado" (change)="selecionar(produto)" />
+                                </td>
+                                <td>{{ produto.codigo }}</td>
+                                <td>{{ produto.nome }}</td>
+                                <td>{{ produto.descricao }}</td>
+                                <td>{{ produto.valor }}</td>
+                                <td>{{ produto.observacao }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="btn-group">
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary" (click)="incluir()">Incluir</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary" (click)="alterar()">Alterar</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-danger" (click)="remover()">Excluir</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</app-layout>

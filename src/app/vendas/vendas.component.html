@@ -1,0 +1,59 @@
+<app-layout>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Vendas</h3>
+
+            <div class="row">
+                <div class="form-group col-12">
+                    <label class="control-label">Cliente:</label>
+                    <select [(ngModel)]="vendas.cliente" class="form-control">
+                        <option [ngValue]="null">Selecione</option>
+                        <option *ngFor="let cliente of listaCliente" [ngValue]="cliente">{{ cliente.nome }}</option>
+                    </select>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-primary" (click)="pesquisar()">Pesquisar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="table-responsive-sm col-lg-12">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Data da Venda</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let vendas of listaVendasProduto">
+                                <td>
+                                    <input type="radio" name="selecionado" (change)="selecionar(vendas)" />
+                                </td>
+                                <td>{{ vendas.codigo }}</td>
+                                <td>{{ vendas.cliente.nome }}</td>
+                                <td>{{ vendas.data | date: 'dd/MM/yyyy' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="btn-group">
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-primary" (click)="incluir()">Incluir</button>
+                    </div>
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-danger" (click)="remover()">Excluir</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</app-layout>
